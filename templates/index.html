@@ -5,22 +5,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>E-Ecommerce</title>
-    <link rel="stylesheet" href="/E-commerce/css/style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
 </head>
 <body>
-
     <header>
         <div class="container top-nav">
-            <a href="#" class="logo"><img src="imagens/paw.png" alt=""></a>
+            <a href="{% url 'home' %}" class="logo"><img src="{% static 'img/paw.png' %}" alt=""></a>
             <form action="" class="search">
                 <input type="search" placeholder="search for produts...">
                 <button type="submit">Search</button>
             </form>
-
             <div class="cart_header">
                 <div onclick="open_cart()" class="icon_cart">
                     <i class="fa-solid fa-cart-shopping"></i>
@@ -32,24 +29,21 @@
                 </div>
             </div>
         </div>
-
         <nav>
             <div class="links container">
-                <i onclick="open_menu()"class="fa-solid fa-bars btn_open_menu" ></i>          
+                <i onclick="open_menu()"class="fa-solid fa-bars btn_open_menu" ></i>
                 <ul id="menu">
                     <span onclick="close_menu()" class="bg-overlay"></span>
                     <i onclick="close_menu()"class="fa-regular fa-circle-xmark btn_close_menu"></i>
-                    <img class="logo_menu" src="/E-commerce/imagens/paw.png" alt="">
-
-                    <li class="active"><a href="index.html">home</a></li>
-                    <li><a href="all_products.html">all products</a></li>
-                    <li><a href="">about us</a></li>
-                    <li><a href="">contact</a></li>
+                    <img class="logo_menu" src="{% static 'img/paw.png' %}" alt="">
+                    <li class="active"><a href="{% url 'home' %}">home</a></li>
+                    <li><a href="{% url 'all_products' %}">all products</a></li>
+                    <li><a href="#">about us</a></li>
+                    <li><a href="#">contact</a></li>
                 </ul>
-
                 <div class="loging_signup">
-                    <a href="login.html">Login <i class="fa-solid fa-right-to-bracket"></i></a>
-                    <a href="signup_page.html">Sign up <i class="fa-solid fa-user-plus"></i></a>
+                    <a href="{% url 'login' %}">Login <i class="fa-solid fa-right-to-bracket"></i></a>
+                    <a href="{% url 'signup' %}">Sign up <i class="fa-solid fa-user-plus"></i></a>
                 </div>
             </div>
         </nav>
@@ -60,194 +54,154 @@
             <h3>My cart <span class="count_item_cart">(0Item in Cart)</span></h3>
             <span onclick="close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
         </div>
-        
         <div class="items_in_cart">
-            
         </div>
-
         <div class="bottom_Cart">
             <div class="total">
                 <p>Cart subtotal</p>
                 <p class="price_cart_total">$0</p>
             </div>
-
             <div class="button_Cart">
-                <a href="checkout.html" class="btn_cart">Proceed to checkout</a>
+                <a href="{% url 'checkout' %}" class="btn_cart">Proceed to checkout</a>
                 <button onclick="close_cart()"class="btn_cart trans_bg">Shop more</button>
             </div>
         </div>
     </div>
 
     <section class="slider">
-            <div class="container">
-                <div class="side_bar">
-                    <h2><i class="fa-solid fa-bars"></i>Shop by department</h2>
-                    <a href="#">All Categories</a>
-                    <a href="#">Best Seller Products</a>
-                    <a href="#"> New Arrivals</a>
-                    <a href="#">Top 10 Offers</a>
-                    <a href="#">Phones & Tablet</a>
-                    <a href="#">Electronics & Digita</a>
-                    <a href="#">Fashion & Clothings</a>
-                    <a href="#">Jewelry & Watches</a>
-                    <a href="#">TV & Audio</a>           
-                </div>
-
-        <!-- Swiper -->
-    <div class="slide-swp Swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#"><img src="/E-commerce/imagens/slider-03.jpg" alt=""></a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="#"><img src="/E-commerce/imagens/slider-01.jpg" alt=""></a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="#"><img src="/E-commerce/imagens/slider-02.jpg" alt=""></a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#"><img src="/E-commerce/imagens/slider-03.jpg" alt=""></a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#"><img src="/E-commerce/imagens/slider-01.jpg" alt=""></a>
-                </div>
+        <div class="container">
+            <div class="side_bar">
+                <h2><i class="fa-solid fa-bars"></i>Shop by department</h2>
+                <a href="#">All Categories</a>
+                <a href="#">Best Seller Products</a>
+                <a href="#"> New Arrivals</a>
+                <a href="#">Top 10 Offers</a>
+                <a href="#">Phones & Tablet</a>
+                <a href="#">Electronics & Digita</a>
+                <a href="#">Fashion & Clothings</a>
+                <a href="#">Jewelry & Watches</a>
+                <a href="#">TV & Audio</a>
             </div>
 
-        <div class="swiper-pagination swiper-pagination-main"></div>
-    </div>
-
+            <div class="slide-swp Swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="#"><img src="{% static 'img/slider-03.jpg' %}" alt=""></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#"><img src="{% static 'img/slider-01.jpg' %}" alt=""></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#"><img src="{% static 'img/slider-02.jpg' %}" alt=""></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#"><img src="{% static 'img/slider-03.jpg' %}" alt=""></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#"><img src="{% static 'img/slider-01.jpg' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="swiper-pagination swiper-pagination-main"></div>
             </div>
+        </div>
     </section>
 
     <section class="features">
-            <div class="container">
-                <div class="feature_item">
-                    <img src="/E-commerce/imagens/product1.jpg" alt="">
-                    <div class="text">
-                        <h4>Free Shoping</h4>
-                        <p>Free Shipping on all order</p>
-                    </div>
+        <div class="container">
+            <div class="feature_item">
+                <img src="{% static 'img/product1.jpg' %}" alt="">
+                <div class="text">
+                    <h4>Free Shoping</h4>
+                    <p>Free Shipping on all order</p>
                 </div>
-                
-                <div class="feature_item">
-                    <img src="/E-commerce/imagens/product2.jpg" alt="">
-                    <div class="text">
-                        <h4>Free Shoping</h4>
-                        <p>Free Shipping on all order</p>
-                    </div>
-                </div>
-
-                <div class="feature_item">
-                    <img src="/E-commerce/imagens/product3.jpg" alt="">
-                    <div class="text">
-                        <h4>Free Shoping</h4>
-                        <p>Free Shipping on all order</p>
-                    </div>
-                </div>
-
-                <div class="feature_item">
-                    <img src="/E-commerce/imagens/product4.jpg" alt="">
-                    <div class="text">
-                        <h4>Free Shoping</h4>
-                        <p>Free Shipping on all order</p>
-                    </div>
-                </div>
-
-                <div class="feature_item">
-                    <img src="/E-commerce/imagens/product5.png" alt="">
-                    <div class="text">
-                        <h4>Free Shoping</h4>
-                        <p>Free Shipping on all order</p>
-                    </div>
-                </div>
-
             </div>
+            <div class="feature_item">
+                <img src="{% static 'img/product2.jpg' %}" alt="">
+                <div class="text">
+                    <h4>Free Shoping</h4>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+            <div class="feature_item">
+                <img src="{% static 'img/product3.jpg' %}" alt="">
+                <div class="text">
+                    <h4>Free Shoping</h4>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+            <div class="feature_item">
+                <img src="{% static 'img/product4.jpg' %}" alt="">
+                <div class="text">
+                    <h4>Free Shoping</h4>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+            <div class="feature_item">
+                <img src="{% static 'img/product5.png' %}" alt="">
+                <div class="text">
+                    <h4>Free Shoping</h4>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="banner">
-            <div class="container">
-
-                <div class="banner_img">
-                    <div class="glass_hover"></div>
-                    <a href="#">
-                        <img src="/E-commerce/imagens/product1.jpg" alt="">
-                    </a>
-                </div>
-                
-                <div class="banner_img">
-                    <div class="glass_hover"></div>
-                    <a href="#">
-                        <img src="/E-commerce/imagens/product1.jpg" alt="">
-                    </a>
-                </div>
-
-                <div class="banner_img">
-                    <div class="glass_hover"></div>
-                    <a href="#">
-                        <img src="/E-commerce/imagens/product1.jpg" alt="">
-                    </a>
-                </div>
+        <div class="container">
+            <div class="banner_img">
+                <div class="glass_hover"></div>
+                <a href="#"><img src="{% static 'img/product1.jpg' %}" alt=""></a>
             </div>
+            <div class="banner_img">
+                <div class="glass_hover"></div>
+                <a href="#"><img src="{% static 'img/product1.jpg' %}" alt=""></a>
+            </div>
+            <div class="banner_img">
+                <div class="glass_hover"></div>
+                <a href="#"><img src="{% static 'img/product1.jpg' %}" alt=""></a>
+            </div>
+        </div>
     </section>
 
     <section class="slide slide_sale">
         <div class="container">
-
             <div class="sale_sec swiper">
-
                 <div class="top_slide">
                     <h2>On Sale <span>Products</span></h2>
                 </div>
-
                 <div id="swiper_items_sale" class="products swiper-wrapper"> 
-     
                 </div>
-
                 <div class="swiper-button-next btn_Swip"></div>
                 <div class="swiper-button-prev btn_Swip"></div>
-
             </div>
         </div>
     </section>
 
     <section class="banner banner_big">
         <div class="container">
-            
             <div class="banner_img">
                 <div class="glass_hover"></div>
-                <a href="#">
-                    <img src="/E-commerce/imagens/product1.jpg" alt="">
-                </a>
+                <a href="#"><img src="{% static 'img/product1.jpg' %}" alt=""></a>
             </div>
-
             <div class="banner_img">
                 <div class="glass_hover"></div>
-                <a href="#">
-                    <img src="/E-commerce/imagens/product1.jpg" alt="">
-                </a>
+                <a href="#"><img src="{% static 'img/product1.jpg' %}" alt=""></a>
             </div>
         </div>
     </section>
 
     <section class="slide slide_product">
         <div class="container">
-
             <div class="top_slide">
                 <h2>Computer & Desktop<span> products</span></h2>
             </div>
-
             <div class="slide_with_img">
-
                 <div class="categ_img">
-                    <a href="#"><img src="imagens/product1.jpg" alt=""></a>
+                    <a href="#"><img src="{% static 'img/product1.jpg' %}" alt=""></a>
                 </div>
-
                 <div class="product_swip swiper">
                     <div class="products other_product_swiper swiper-wrapper" id="other_product_swiper">
                     </div>
-                    
                     <div class="swiper-button-next btn_Swip"></div>
                     <div class="swiper-button-prev btn_Swip"></div>
                 </div>
@@ -257,66 +211,50 @@
 
     <section class="slide slide_product">
         <div class="container">
-
             <div class="top_slide">
                 <h2>Computer & Desktop<span> products</span></h2>
             </div>
-
             <div class="slide_with_img">
-
                 <div class="categ_img">
-                    <a href="#"><img src="imagens/product1.jpg" alt=""></a>
+                    <a href="#"><img src="{% static 'img/product1.jpg' %}" alt=""></a>
                 </div>
-
                 <div class="product_swip swiper">
                     <div class="products other_product_swiper swiper-wrapper" id="other_product_swiper2">
                     </div>
-                    
                     <div class="swiper-button-next btn_Swip"></div>
                     <div class="swiper-button-prev btn_Swip"></div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <section class="banner">    
-            <div class="container">
-
-                <div class="banner_img">
-                    <div class="glass_hover"></div>
-                    <a href="#">
-                        <img src="/E-commerce/imagens/product1.jpg" alt="">
-                    </a>
-                </div>
-                
-                <div class="banner_img">
-                    <div class="glass_hover"></div>
-                    <a href="#">
-                        <img src="/E-commerce/imagens/product1.jpg" alt="">
-                    </a>
-                </div>
-
-                <div class="banner_img">
-                    <div class="glass_hover"></div>
-                    <a href="#">
-                        <img src="/E-commerce/imagens/product1.jpg" alt="">
-                    </a>
-                </div>
+    <section class="banner">
+        <div class="container">
+            <div class="banner_img">
+                <div class="glass_hover"></div>
+                <a href="#"><img src="{% static 'img/product1.jpg' %}" alt=""></a>
             </div>
+            <div class="banner_img">
+                <div class="glass_hover"></div>
+                <a href="#"><img src="{% static 'img/product1.jpg' %}" alt=""></a>
+            </div>
+            <div class="banner_img">
+                <div class="glass_hover"></div>
+                <a href="#"><img src="{% static 'img/product1.jpg' %}" alt=""></a>
+            </div>
+        </div>
     </section>
 
     <div class="newsletter">
         <div class="container">
             <div class="text">
-                <img src="/E-commerce/imagens/email.png" alt="">
+                <img src="{% static 'img/email.png' %}" alt="">
                 <div class="content">
                     <h4>Sign up to newsletter</h4>
                     <p>Get email updates about our latest shop... and receive</p>
                     <h6>$30 Coupon For First Shopping</h6>
                 </div>
             </div>
-
             <form action="" class="newsletter_form">
                 <input type="email" placeholder="Enter your email here...">
                 <button type="submit">subscribe</button>
@@ -331,21 +269,18 @@
     <footer>
         <div class="container">
             <div class="big_row">
-                <img src="/E-commerce/imagens/paw.png" alt="">
-                <div class="hotline">                 
+                <img src="{% static 'img/paw.png' %}" alt="">
+                <div class="hotline">
                     <i class="fa-solid fa-headset"></i>
                     <div class="text">
                         <h5>-------------</h5>
                         <h6>4002-8922</h6>
                     </div>
                 </div>
-
-                <p>Lorem ipsum dol  assumenda vitae facilis.</p>
+                <p>Lorem ipsum dol assumenda vitae facilis.</p>
             </div>
-                
             <div class="row">
                 <h4>FAQs & Help</h4>
-
                 <div class="links">
                     <a href="#">F.A.Q</a>
                     <a href="#">Ordering Tracking</a>
@@ -354,10 +289,8 @@
                     <a href="#">Help Center</a>
                 </div>
             </div>
-            
             <div class="row">
                 <h4>Shipping & Delivery</h4>
-
                 <div class="links">
                     <a href="#">Devlivery Informaiton</a>
                     <a href="#">Discount</a>
@@ -366,10 +299,8 @@
                     <a href="#">Shipping Guide</a>
                 </div>
             </div>
-
             <div class="row">
                 <h4>Information</h4>
-
                 <div class="links">
                     <a href="#">Popular</a>
                     <a href="#">Our Services</a>
@@ -378,32 +309,24 @@
                     <a href="#">Terms & Condition</a>
                 </div>
             </div>
-
         </div>
-
         <div class="bottom_footer">
             <div class="container">
                 <p>Copyright &copy; <span>Topico.</span> all rights reserved</p>
-
                 <div class="payment_img">
-                    <img src="/E-commerce/imagens/card1.png" alt="">
-                    <img src="/E-commerce/imagens/card2.png" alt="">
-                    <img src="/E-commerce/imagens/card3.png" alt="">
-                    <img src="/E-commerce/imagens/card4.png" alt="">
+                    <img src="{% static 'img/card1.png' %}" alt="">
+                    <img src="{% static 'img/card2.png' %}" alt="">
+                    <img src="{% static 'img/card3.png' %}" alt="">
+                    <img src="{% static 'img/card4.png' %}" alt="">
                 </div>
             </div>
         </div>
-    
     </footer>
 
-
-
-  <!-- Initialize Swiper -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="/E-commerce/js/swiper.js"></script>
-<script src="js/items_home.js"></script>
-<script src="js/script.js"></script>
-<script src="/E-commerce/js/main.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{% static 'js/swiper.js' %}"></script>
+    <script src="{% static 'js/items_home.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/all_products.js' %}"></script>
 </body>
 </html>
