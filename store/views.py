@@ -1,11 +1,15 @@
-
 from django.shortcuts import render
+from .models import Product
 
 def home(request):
-    return render(request, 'index.html')
+    products = Product.objects.all()
+    context = {'products': products}
+    return render(request, 'index.html', context)
 
 def all_products(request):
-    return render(request, 'all_products.html')
+    products = Product.objects.all()
+    context = {'products': products}
+    return render(request, 'all_products.html', context)
 
 def login_page(request):
     return render(request, 'login.html')
@@ -16,6 +20,7 @@ def signup_page(request):
 def checkout(request):
     return render(request, 'checkout.html')
 
-def item_detail(request, item_id):
-    return render(request, 'item.html', {'item_id': item_id})
-
+def product_detail(request, product_id):
+    product = Product.objects.get(id=product_id)
+    context = {'product': product}
+    return render(request, 'item.html', context)
