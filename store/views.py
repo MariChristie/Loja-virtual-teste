@@ -2,13 +2,26 @@ from django.shortcuts import render
 from .models import Product
 
 def home(request):
-    products = Product.objects.all()
-    context = {'products': products}
+    on_sale_products = Product.objects.filter(old_price__isnull=False)
+    computer_products = Product.objects.filter(category='Computer')
+    phone_products = Product.objects.filter(category='Phones')
+
+    context = {
+        'on_sale_products': on_sale_products,
+        'computer_products': computer_products,
+        'phone_products': phone_products,
+    }
     return render(request, 'index.html', context)
 
 def all_products(request):
     products = Product.objects.all()
-    context = {'products': products}
+    categories = Product.objects.values_list('category', flat=True).distinct()
+    brands = Product.objects.values_list('brand', flat=True).distinct()
+    context = {
+        'products': products,
+        'categories': categories,
+        'brands': brands,
+    }
     return render(request, 'all_products.html', context)
 
 def login_page(request):

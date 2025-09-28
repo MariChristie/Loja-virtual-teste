@@ -79,97 +79,63 @@
             <span class="btn_filter" onclick="open_close_filter()">
                 filter <i class="fa-solid fa-filter"></i>
             </span>
+
             <div class="filter">
                 <h2>filter</h2>
                 <div class="filter_item">
                     <h4>categorie</h4>
                     <div class="content">
-                        <div class="item">
-                            <span>Phones</span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span>Tablets</span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span>Elecronics</span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span>TV</span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span>Fashion</span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span>Watches</span>
-                            <input type="checkbox">
-                        </div>
+                        {% for category in categories %}
+                            <div class="item">
+                                <span>{{ category }}</span>
+                                <input type="checkbox">
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="filter_item">
                     <h4>Brand</h4>
                     <div class="content">
-                        <div class="item">
-                            <span>Apple</span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span>Samsug</span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span>Intel</span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span>Oppo</span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span>Xiaomi</span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span>Watches</span>
-                            <input type="checkbox">
-                        </div>
-                    </div>
-                </div>
-                <div class="filter_item">
-                    <h4>color</h4>
-                    <div class="content">
-                        <div class="item">
-                            <span class="color" style="background: red;" ></span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span class="color" style="background: blue;" ></span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span class="color" style="background: black;" ></span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span class="color" style="background: orangered;" ></span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span class="color" style="background:green;" ></span>
-                            <input type="checkbox">
-                        </div>
-                        <div class="item">
-                            <span class="color" style="background: yellow;" ></span>
-                            <input type="checkbox">
-                        </div>
+                        {% for brand in brands %}
+                            <div class="item">
+                                <span>{{ brand }}</span>
+                                <input type="checkbox">
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-            <div id="products_dev" class="products_dev ">
+            
+            <div id="products_dev" class="products_dev">
+                {% for product in products %}
+                    <div class="product">
+                        <div class="icons">
+                            <span><i class="fa-solid fa-cart-plus"></i></span>
+                            <span><i class="fa-solid fa-heart"></i></span>
+                            <span><i class="fa-solid fa-share"></i></span>
+                        </div>
+                        <div class="img_product">
+                            {% if product.image %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                </a>
+                            {% endif %}
+                        </div>
+                        <h3 class="name_product"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h3>
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="price">
+                            <p><span>R$ {{ product.price }}</span></p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>Nenhum produto encontrado.</p>
+                {% endfor %}
             </div>
         </div>
         <div class="pagination">
@@ -238,6 +204,5 @@
     </footer>
 
     <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/all_products.js' %}"></script>
 </body>
 </html>

@@ -169,7 +169,38 @@
                 <div class="top_slide">
                     <h2>On Sale <span>Products</span></h2>
                 </div>
-                <div id="swiper_items_sale" class="products swiper-wrapper"> 
+                
+                <div class="products swiper-wrapper">
+                    {% for product in products %}
+                        <div class="product swiper-slide" data-product-id="{{ product.id }}">
+                            <div class="icons">
+                                <span onclick="addToCart({{ product.id }}, this)"><i class="fa-solid fa-cart-plus"></i></span>
+                                <span><i class="fa-solid fa-heart"></i></span>
+                                <span><i class="fa-solid fa-share"></i></span>
+                            </div>
+                            <div class="img_product">
+                                {% if product.image %}
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <h3 class="name_product"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h3>
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="price">
+                                <p><span>R$ {{ product.price }}</span></p>
+                                {% if product.old_price %}
+                                    <p class="old_price">R$ {{ product.old_price }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
                 <div class="swiper-button-next btn_Swip"></div>
                 <div class="swiper-button-prev btn_Swip"></div>
@@ -325,8 +356,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{% static 'js/swiper.js' %}"></script>
-    <script src="{% static 'js/items_home.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/all_products.js' %}"></script>
 </body>
 </html>
