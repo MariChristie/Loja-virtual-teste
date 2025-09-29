@@ -1,4 +1,4 @@
-fetch('js/items.json')
+fetch('/api/products/')
             .then(response => response.json())
             .then(data => {
 

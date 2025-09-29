@@ -11,6 +11,16 @@
 </head>
 <body>
     <header>
+        <div class="loging_signup">
+            {% if user.is_authenticated %}
+                <span class="welcome-message">Olá, {{ user.username }}!</span>
+                <a href="{% url 'logout' %}">Sair</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Sign up</a>
+            {% endif %}
+        </div>
+
         <div class="container top-nav">
             <a href="{% url 'home' %}" class="logo"><img src="{% static 'img/paw.png' %}" alt=""></a>
             <form action="" class="search">

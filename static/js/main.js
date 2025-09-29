@@ -1,5 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    const mainSwiper = new Swiper(".slide-swp", {
+        pagination: {
+            el: ".swiper-pagination-main",
+            dynamicBullets: true,
+            clickable: true
+        },
+        autoplay: { delay: 2500 },
+        loop: true,
+    });
+
     const saleSwiper = new Swiper('.sale_sec', {
         loop: true,
         spaceBetween: 20,
@@ -88,9 +98,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (items_in_cart) {
             items_in_cart.innerHTML = items_html;
         }
-
-        document.querySelector('.price_cart_Head').textContent = "R$ " + total_price.toFixed(2);
-        document.querySelector('.count_item').textContent = product_cart.length;
+        
+        let price_cart_Head = document.querySelector('.price_cart_Head');
+        if(price_cart_Head) {
+            price_cart_Head.textContent = "R$ " + total_price.toFixed(2);
+        }
+        
+        let count_item = document.querySelector('.count_item');
+        if(count_item) {
+            count_item.textContent = product_cart.length;
+        }
     }
 
     window.removeFromCart = function(index) {

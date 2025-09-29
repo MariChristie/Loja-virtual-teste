@@ -11,8 +11,11 @@ urlpatterns = [
     path('all-products/', views.all_products, name='all_products'),
     path('login/', views.login_page, name='login'),
     path('signup/', views.signup_page, name='signup'),
-    path('checkout/', views.checkout, name='checkout'),
+    path('checkout/', views.checkout_page, name='checkout'),
     path('product/<int:product_id>/', views.product_detail, name='product_detail'),
+    path('api/products/', views.product_api, name='product_api'),
+    path('logout/', views.logout_user, name='logout'),
+
 ]
 
 if settings.DEBUG:

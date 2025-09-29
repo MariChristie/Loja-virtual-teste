@@ -12,6 +12,15 @@
 </head>
 <body>
     <header>
+        <div class="loging_signup">
+            {% if user.is_authenticated %}
+                <span class="welcome-message">Olá, {{ user.username }}!</span>
+                <a href="{% url 'logout' %}">Sair</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Sign up</a>
+            {% endif %}
+        </div>
         <div class="container top-nav">
             <a href="{% url 'home' %}" class="logo"><img src="{% static 'img/paw.png' %}" alt=""></a>
             <form action="" class="search">
@@ -70,28 +79,27 @@
     <section class="signin sec_form">
         <div class="form_container">
             <p class="title">Welcome back</p>
-            <form action="" class="form">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+            <form action="{% url 'login' %}" method="POST" class="form">
+                {% csrf_token %}
+                {{ form.username }}
+                {{ form.password }}
+                {% if form.non_field_errors %}
+                    <div class="form-errors">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
                 <p class="page-link">
-                    <a href="#" class="page-link-label">Forgot Passoword?</a>
+                    <a href="#" class="page-link-label">Forgot Password?</a>
                 </p>
-                <button class="form-btn">Login</button>
+                <button class="form-btn" type="submit">Login</button>
             </form>
             <p class="sign-up-label">
-                Dont't have an account? <a href="#" class="sign-up-link">Sign up</a>
+                Don't have an account? <a href="{% url 'signup' %}" class="sign-up-link">Sign up</a>
             </p>
-            <div class="buttons_container">
-                <div class="apple-login-button">
-                    <i class="fa-brands fa-apple"></i>
-                    <span>Login with Apple</span>
-                </div>
-                <div class="google-login-button">
-                    <i class="fa-brands fa-google"></i>
-                    <span>Login with Google</span>
-                </div>
+
             </div>
-        </div>
     </section>
 
     <footer>
